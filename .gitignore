@@ -1,0 +1,10 @@
+build/*
+build/
+dist/*
+dist/
+*.egg-info
+tkbc/data/*
+tkbc/data/
+__pycache__/*
+__pycache__/
+test.ipynb
