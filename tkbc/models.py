@@ -76,8 +76,8 @@ class TKBCModel(nn.Module, ABC):
                             else:
                                 end_queries.append([int(triple[0]), int(triple[1])+self.sizes[1]//4, int(triple[2]), end_idx])
 
-                        start_queries = torch.from_numpy(np.array(start_queries).astype('int64')).cuda()
-                        end_queries = torch.from_numpy(np.array(end_queries).astype('int64')).cuda()
+                        start_queries = torch.from_numpy(np.array(start_queries).astype('int64')).cpu()
+                        end_queries = torch.from_numpy(np.array(end_queries).astype('int64')).cpu()
 
                         q_s = self.get_queries(start_queries)
                         q_e = self.get_queries(end_queries)
@@ -88,7 +88,7 @@ class TKBCModel(nn.Module, ABC):
                         q = self.get_queries(these_queries)
                         """
                         if use_left_queries:
-                            lhs_queries = torch.ones(these_queries.size()).long().cuda()
+                            lhs_queries = torch.ones(these_queries.size()).long().cpu()
                             lhs_queries[:,1] = (these_queries[:,1]+self.sizes[1]//2)%self.sizes[1]
                             lhs_queries[:,0] = these_queries[:,2]
                             lhs_queries[:,2] = these_queries[:,0]

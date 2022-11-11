@@ -98,7 +98,7 @@ def learn(model=args.model,
     model = {
         'TeLM': TeLM(sizes, rank, no_time_emb=args.no_time_emb, time_granularity=time_granularity)
     }[model]
-    model = model.cuda()
+    model = model.cpu()
 
 
     opt = optim.Adagrad(model.parameters(), lr=learning_rate)

@@ -31,7 +31,7 @@ class TKBCOptimizer(object):
             while b_begin < examples.shape[0]:
                 input_batch = actual_examples[
                     b_begin:b_begin + self.batch_size
-                ].cuda()
+                ].cpu()
                 if pre_train:
                     predictions, factors, time = self.model.pretrain(input_batch)
                 else:

@@ -42,7 +42,7 @@ class TemporalDataset(object):
             self.n_timestamps = int(maxis[3] + 1)
         try:
             inp_f = open(str(self.root / f'ts_diffs.pickle'), 'rb')
-            self.time_diffs = torch.from_numpy(pickle.load(inp_f)).cuda().float()
+            self.time_diffs = torch.from_numpy(pickle.load(inp_f)).cpu().float()
             # print("Assume all timestamps are regularly spaced")
             # self.time_diffs = None
             inp_f.close()
@@ -119,7 +119,7 @@ class TemporalDataset(object):
                     at
                 ))))
         else:
-            examples = torch.from_numpy(test.astype('int64')).cuda()
+            examples = torch.from_numpy(test.astype('int64')).cpu()
             for m in missing:
                 q = examples.clone()
                 if n_queries > 0:
